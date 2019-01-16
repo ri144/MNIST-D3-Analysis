@@ -1,0 +1,18 @@
+import numpy as np
+import random
+from math import sqrt
+import matplotlib.pyplot as plt
+
+# Step 1: loading MNIST data
+X = np.load('./mnist_X.npy')
+y = np.load('./mnist_y.npy')
+dim = int(sqrt(X.shape[1]))
+print "MNIST has {} images, each has {} pixels".format(X.shape[0], X.shape[1]) 
+print "The size of each image is {}x{}".format(dim, dim)
+
+# Step 2: Data Verificiation: randomly pick one digit and vis it
+idx = random.randint(0, X.shape[0]-1)
+print "The id of the current image is {}, its label is {}".format(idx, int(y[idx]))
+dgt = X[idx, :].reshape(dim, dim)
+plt.imshow(dgt.astype(np.uint8), cmap='gray')
+plt.show()
